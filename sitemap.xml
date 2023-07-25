@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/sustainability-lab/blog/about.html</loc>
-    <lastmod>2023-07-24T04:51:24.755Z</lastmod>
+    <lastmod>2023-07-25T11:52:35.517Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/sustainability-lab/blog/posts/2023-07-24-Prevent-login.html</loc>
-    <lastmod>2023-07-24T04:51:24.151Z</lastmod>
+    <loc>https://github.com/sustainability-lab/blog/posts/2023-07-25-Remove-read-access.html</loc>
+    <lastmod>2023-07-25T11:52:34.829Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/sustainability-lab/blog/index.html</loc>
-    <lastmod>2023-07-24T04:51:23.475Z</lastmod>
+    <lastmod>2023-07-25T11:52:33.553Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/sustainability-lab/blog/posts/2023-07-24-Prevent-login.html</loc>
+    <lastmod>2023-07-25T11:52:34.409Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/sustainability-lab/blog/posts/2022-04-15-GPU-tips.html</loc>
-    <lastmod>2023-07-24T04:51:24.447Z</lastmod>
+    <lastmod>2023-07-25T11:52:35.169Z</lastmod>
   </url>
 </urlset>
