@@ -7,27 +7,6 @@
     "text": "About this blog"
   },
   {
-    "objectID": "posts/2023-07-25-Remove-read-access.html",
-    "href": "posts/2023-07-25-Remove-read-access.html",
-    "title": "Remove read access to other users",
-    "section": "",
-    "text": "To prevent other users from reading a user’s data:\n\nsudo chmod 700 /home/username\n\nCheck if the access is restricted:\n\nls /home/username\nIt will show a message similar to the following:\nls: cannot open directory '/home/username': Permission denied\n\nTo apply this restriction to all users, run the following command:\n\nsudo chmod 700 /home/*\n\nAll sudo users can still access the contents of the home directories of their own as well as others."
-  },
-  {
-    "objectID": "posts/2023-07-25-Remove-read-access.html#remove-read-access-to-other-users",
-    "href": "posts/2023-07-25-Remove-read-access.html#remove-read-access-to-other-users",
-    "title": "Remove read access to other users",
-    "section": "",
-    "text": "To prevent other users from reading a user’s data:\n\nsudo chmod 700 /home/username\n\nCheck if the access is restricted:\n\nls /home/username\nIt will show a message similar to the following:\nls: cannot open directory '/home/username': Permission denied\n\nTo apply this restriction to all users, run the following command:\n\nsudo chmod 700 /home/*\n\nAll sudo users can still access the contents of the home directories of their own as well as others."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Remove read access to other users\n\n\n\n\n\n\n\nLinux\n\n\n\n\nSimple solution to prevent multiple users to see each other’s files.\n\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\n\nLinux\n\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\n\nGPU\n\n\n\n\nGPU related tips and tricks\n\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/2023-07-24-Prevent-login.html",
     "href": "posts/2023-07-24-Prevent-login.html",
     "title": "Restrict/unrestrict user login",
@@ -42,6 +21,13 @@
     "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Remove read access to other users\n\n\n\n\n\n\n\nLinux\n\n\n\n\nSimple solution to prevent multiple users to see each other’s files.\n\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\n\nLinux\n\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\n\nGPU\n\n\n\n\nGPU related tips and tricks\n\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/2022-04-15-GPU-tips.html",
     "href": "posts/2022-04-15-GPU-tips.html",
     "title": "GPU CheatSheet",
@@ -54,5 +40,26 @@
     "title": "GPU CheatSheet",
     "section": "",
     "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
+  },
+  {
+    "objectID": "posts/2023-07-25-Remove-read-access.html",
+    "href": "posts/2023-07-25-Remove-read-access.html",
+    "title": "Remove read access to other users",
+    "section": "",
+    "text": "To prevent other users from reading a user’s data:\n\nsudo chmod 700 /home/username\n\nCheck if the access is restricted:\n\nls /home/username\nIt will show a message similar to the following:\nls: cannot open directory '/home/username': Permission denied\n\nTo apply this restriction to all existing users, run the following command:\n\nsudo chmod 700 /home/*\n\nAll sudo users can still access the contents of the home directories of their own as well as others."
+  },
+  {
+    "objectID": "posts/2023-07-25-Remove-read-access.html#remove-read-access-to-other-users-for-existing-users",
+    "href": "posts/2023-07-25-Remove-read-access.html#remove-read-access-to-other-users-for-existing-users",
+    "title": "Remove read access to other users",
+    "section": "",
+    "text": "To prevent other users from reading a user’s data:\n\nsudo chmod 700 /home/username\n\nCheck if the access is restricted:\n\nls /home/username\nIt will show a message similar to the following:\nls: cannot open directory '/home/username': Permission denied\n\nTo apply this restriction to all existing users, run the following command:\n\nsudo chmod 700 /home/*\n\nAll sudo users can still access the contents of the home directories of their own as well as others."
+  },
+  {
+    "objectID": "posts/2023-07-25-Remove-read-access.html#how-to-set-this-by-default-for-all-new-user-accounts",
+    "href": "posts/2023-07-25-Remove-read-access.html#how-to-set-this-by-default-for-all-new-user-accounts",
+    "title": "Remove read access to other users",
+    "section": "How to set this by default for all new user accounts?",
+    "text": "How to set this by default for all new user accounts?\nA solution is given here.\nWe can simply change the DIR_MODE in /etc/adduser.conf file to this:\nDIR_MODE=0700\n# DIR_MODE=0755  # This is default\nWhere: - 0 means octal numbering system. - 7 means read (4) + write (2) + execute (1) access to the owner. - Last two zeros means no access to other users."
   }
 ]
