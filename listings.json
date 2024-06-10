@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2023-07-25-Setup-NAS.html",
       "/posts/2023-07-25-Remove-read-access.html",
       "/posts/2023-07-24-Prevent-login.html",
       "/posts/2022-04-15-GPU-tips.html"

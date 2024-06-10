@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this blog"
-  },
-  {
     "objectID": "posts/2023-07-24-Prevent-login.html",
     "href": "posts/2023-07-24-Prevent-login.html",
     "title": "Restrict/unrestrict user login",
@@ -19,27 +12,6 @@
     "title": "Restrict/unrestrict user login",
     "section": "",
     "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Remove read access to other users\n\n\n\n\n\n\n\nLinux\n\n\n\n\nSimple solution to prevent multiple users to see each other’s files.\n\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\n\nLinux\n\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n  \n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\n\nGPU\n\n\n\n\nGPU related tips and tricks\n\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/2022-04-15-GPU-tips.html",
-    "href": "posts/2022-04-15-GPU-tips.html",
-    "title": "GPU CheatSheet",
-    "section": "",
-    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
-  },
-  {
-    "objectID": "posts/2022-04-15-GPU-tips.html#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04",
-    "href": "posts/2022-04-15-GPU-tips.html#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04",
-    "title": "GPU CheatSheet",
-    "section": "",
-    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
   },
   {
     "objectID": "posts/2023-07-25-Remove-read-access.html",
@@ -61,5 +33,47 @@
     "title": "Remove read access to other users",
     "section": "How to set this by default for all new user accounts?",
     "text": "How to set this by default for all new user accounts?\nA solution is given here.\nWe can simply change the DIR_MODE in /etc/adduser.conf file to this:\nDIR_MODE=0700\n# DIR_MODE=0755  # This is default\nWhere: - 0 means octal numbering system. - 7 means read (4) + write (2) + execute (1) access to the owner. - Last two zeros means no access to other users."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "QNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRemove read access to other users\n\n\n\n\n\n\nLinux\n\n\n\nSimple solution to prevent multiple users to see each other’s files.\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\nLinux\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\nGPU\n\n\n\nGPU related tips and tricks\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/2023-07-25-Setup-NAS.html",
+    "href": "posts/2023-07-25-Setup-NAS.html",
+    "title": "QNAP NAS Setup",
+    "section": "",
+    "text": "Source: QNAP NAS Setup"
+  },
+  {
+    "objectID": "posts/2023-07-25-Setup-NAS.html#qnap-nas-setup",
+    "href": "posts/2023-07-25-Setup-NAS.html#qnap-nas-setup",
+    "title": "QNAP NAS Setup",
+    "section": "",
+    "text": "Source: QNAP NAS Setup"
+  },
+  {
+    "objectID": "posts/2022-04-15-GPU-tips.html",
+    "href": "posts/2022-04-15-GPU-tips.html",
+    "title": "GPU CheatSheet",
+    "section": "",
+    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
+  },
+  {
+    "objectID": "posts/2022-04-15-GPU-tips.html#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04",
+    "href": "posts/2022-04-15-GPU-tips.html#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04",
+    "title": "GPU CheatSheet",
+    "section": "",
+    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
   }
 ]
