@@ -63,6 +63,13 @@
     "text": "Source: QNAP NAS Setup"
   },
   {
+    "objectID": "posts/2023-07-25-Setup-NAS.html#setup",
+    "href": "posts/2023-07-25-Setup-NAS.html#setup",
+    "title": "QNAP NAS Setup",
+    "section": "Setup",
+    "text": "Setup\n\nAt the time of writing, we have a QNAP NAS with 6 HDDs with 16 TB storage space each. The total storage space is 96 TB. The NAS is connected to the network and is accessible via the IP address 10.0.62.201.\nI want to try with two HDDs first in RAID 1 configuration. I will add more HDDs later. So, this amounts to total 16 TB storage space with 1 hard-disk failure tolerance."
+  },
+  {
     "objectID": "posts/2022-04-15-GPU-tips.html",
     "href": "posts/2022-04-15-GPU-tips.html",
     "title": "GPU CheatSheet",
