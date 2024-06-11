@@ -56,18 +56,18 @@
     "text": "Source: QNAP NAS Setup"
   },
   {
-    "objectID": "posts/2023-07-25-Setup-NAS.html#qnap-nas-setup",
-    "href": "posts/2023-07-25-Setup-NAS.html#qnap-nas-setup",
+    "objectID": "posts/2023-07-25-Setup-NAS.html#create-the-volume",
+    "href": "posts/2023-07-25-Setup-NAS.html#create-the-volume",
     "title": "QNAP NAS Setup",
-    "section": "",
-    "text": "Source: QNAP NAS Setup"
+    "section": "Create the Volume",
+    "text": "Create the Volume\n\nOpen NAS web interface in a browser by IP address (currently, 10.0.62.201) and login with an admin access account.\nHomepage may look like this: \nChecking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs. \nAfter clicking Performance test, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs. \nWe need to create a volume to store data. \nChoosing Static Volume to get maximum read/write speed. \nUsing 3 HDDs for now in RAID 5 mode (saves against 1 HDD failure and provides N/2 storage space). \nAfter submitting the request, wait for a few minutes and you’ll have your NAS volume ready to use. \nBy default, Public folder is created in the volume."
   },
   {
-    "objectID": "posts/2023-07-25-Setup-NAS.html#setup",
-    "href": "posts/2023-07-25-Setup-NAS.html#setup",
+    "objectID": "posts/2023-07-25-Setup-NAS.html#set-permissions-from-the-nas-web-interface",
+    "href": "posts/2023-07-25-Setup-NAS.html#set-permissions-from-the-nas-web-interface",
     "title": "QNAP NAS Setup",
-    "section": "Setup",
-    "text": "Setup\n\nHomepage may look like this: \nChecking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs. \nAfter clicking Performance test, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs."
+    "section": "Set permissions from the NAS web interface",
+    "text": "Set permissions from the NAS web interface\n\nEnable Advanced Folder Permissions"
   },
   {
     "objectID": "posts/2022-04-15-GPU-tips.html",

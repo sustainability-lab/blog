@@ -157,8 +157,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#qnap-nas-setup" id="toc-qnap-nas-setup" class="nav-link active" data-scroll-target="#qnap-nas-setup">QNAP NAS Setup</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#create-the-volume" id="toc-create-the-volume" class="nav-link active" data-scroll-target="#create-the-volume">Create the Volume</a></li>
+  <li><a href="#set-permissions-from-the-nas-web-interface" id="toc-set-permissions-from-the-nas-web-interface" class="nav-link" data-scroll-target="#set-permissions-from-the-nas-web-interface">Set permissions from the NAS web interface</a></li>
   </ul>
 </nav>
     </div>
@@ -169,18 +169,27 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="qnap-nas-setup" class="level2">
-<h2 class="anchored" data-anchor-id="qnap-nas-setup">QNAP NAS Setup</h2>
 <ul>
 <li>Source: <a href="https://www.qnap.com/en/how-to/faq/article/how-to-configure-sub-folders-acl-for-nfs-clients">QNAP NAS Setup</a></li>
 </ul>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="create-the-volume" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-volume">Create the Volume</h2>
 <ul>
+<li><p>Open NAS web interface in a browser by IP address (currently, <code>10.0.62.201</code>) and login with an admin access account.</p></li>
 <li><p>Homepage may look like this: <img src="../images/nas/Homepage.png" class="img-fluid" alt="image"></p></li>
 <li><p>Checking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs. <img src="../images/nas/Disks.png" class="img-fluid" alt="image"></p></li>
 <li><p>After clicking <code>Performance test</code>, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs. <img src="../images/nas/Disk_Performance.png" class="img-fluid" alt="image"></p></li>
+<li><p>We need to create a volume to store data. <img src="../images/nas/Storage_Homepage.png" class="img-fluid" alt="image"></p></li>
+<li><p>Choosing <code>Static Volume</code> to get maximum read/write speed. <img src="../images/nas/Volume_Creation.png" class="img-fluid" alt="image"></p></li>
+<li><p>Using 3 HDDs for now in RAID 5 mode (saves against 1 HDD failure and provides N/2 storage space). <img src="../images/nas/Choose_Disks.png" class="img-fluid" alt="image"></p></li>
+<li><p>After submitting the request, wait for a few minutes and you’ll have your NAS volume ready to use. <img src="../images/nas/Volume_Ready.png" class="img-fluid" alt="image"></p></li>
+<li><p>By default, <code>Public</code> folder is created in the volume. <img src="../images/nas/Default_Folder.png" class="img-fluid" alt="image"></p></li>
+</ul>
+</section>
+<section id="set-permissions-from-the-nas-web-interface" class="level2">
+<h2 class="anchored" data-anchor-id="set-permissions-from-the-nas-web-interface">Set permissions from the NAS web interface</h2>
+<ul>
+<li>Enable Advanced Folder Permissions <img src="../images/nas/Advanced_Permissions.png" class="img-fluid" alt="image"></li>
 </ul>
 
 
