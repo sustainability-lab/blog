@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-24-Prevent-login.html</loc>
-    <lastmod>2024-06-11T09:42:20.393Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-25-Remove-read-access.html</loc>
-    <lastmod>2024-06-11T09:42:20.393Z</lastmod>
-  </url>
-  <url>
     <loc>https://sustainability-lab.github.io/blog/index.html</loc>
-    <lastmod>2024-06-11T09:42:20.393Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
-    <lastmod>2024-06-11T09:42:20.349Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-25-Setup-NAS.html</loc>
-    <lastmod>2024-06-11T09:42:20.393Z</lastmod>
+    <lastmod>2024-07-21T08:19:56.183Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/2022-04-15-GPU-tips.html</loc>
-    <lastmod>2024-06-11T09:42:20.393Z</lastmod>
+    <lastmod>2024-07-21T08:19:56.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-25-Remove-read-access.html</loc>
+    <lastmod>2024-07-21T08:19:56.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
+    <lastmod>2024-07-21T08:19:56.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-24-Prevent-login.html</loc>
+    <lastmod>2024-07-21T08:19:56.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/2023-07-25-Setup-NAS.html</loc>
+    <lastmod>2024-07-21T08:19:56.183Z</lastmod>
   </url>
 </urlset>
