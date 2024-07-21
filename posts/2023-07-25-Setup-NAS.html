@@ -200,6 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#case-2-mounting-a-personal-directory-for-a-specific-user" id="toc-case-2-mounting-a-personal-directory-for-a-specific-user" class="nav-link" data-scroll-target="#case-2-mounting-a-personal-directory-for-a-specific-user">Case 2: Mounting a personal directory for a specific user</a></li>
   <li><a href="#case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read" id="toc-case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read" class="nav-link" data-scroll-target="#case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read">Case 3: Mounting a shared directory where one user can write and others can read</a></li>
   </ul></li>
+  <li><a href="#mount-on-a-mac" id="toc-mount-on-a-mac" class="nav-link" data-scroll-target="#mount-on-a-mac">Mount on a Mac</a></li>
   </ul>
 </nav>
     </div>
@@ -329,9 +330,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>or</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/dataset /mnt/dataset <span class="at">-o</span> username=username,password=password,uid=uid,gid=gid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>file_mode=0644 and dir_mode=0755 ensures that the user can read/write inside <code>/mnt/shared</code> in the host server. Others can only read from it. This is also the default behaviour.</p>
-
-
 </section>
+</section>
+<section id="mount-on-a-mac" class="level2">
+<h2 class="anchored" data-anchor-id="mount-on-a-mac">Mount on a Mac</h2>
+<ul>
+<li>Open Finder and click on <code>Go</code> -&gt; <code>Connect to Server</code>.</li>
+<li>Enter the server address in the following format:</li>
+</ul>
+<pre><code>smb://10.0.62.201</code></pre>
+<ul>
+<li>Enter the username and password.</li>
+<li>Click on <code>Connect</code>.</li>
+<li>You will see the shared folders. Click on the desired folder to mount it.</li>
+<li>You can now access the mounted folder in the Finder.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
