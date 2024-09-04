@@ -1,0 +1,130 @@
+---
+author: Zeel B Patel
+categories:
+- Linux
+date: '2024-06-10'
+description: Set up QNAP NAS user permissions
+layout: post
+title: QNAP NAS Setup
+toc: true
+---
+
+- Source: [QNAP NAS Setup](https://www.qnap.com/en/how-to/faq/article/how-to-configure-sub-folders-acl-for-nfs-clients)
+
+## Terminology
+- `NAS`: Network Attached Storage Device
+- `HOST`: The server where the NAS volume is mounted
+
+## Create the Volume
+
+- Open NAS web interface in a browser by IP address (currently, `10.0.62.201`) and login with an admin access account.
+- Homepage may look like this:
+![image](/images/nas/Homepage.png)
+
+- Checking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs.
+![image](/images/nas/Disks.png)
+
+- After clicking `Performance test`, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs.
+![image](/images/nas/Disk_Performance.png)
+
+- We need to create a volume to store data.
+![image](/images/nas/Storage_Homepage.png)
+
+- Choosing `Static Volume` to get maximum read/write speed.
+![image](/images/nas/Volume_Creation.png)
+
+- Using 3 HDDs for now in RAID 5 mode (saves against 1 HDD failure and provides N/2 storage space).
+![image](/images/nas/Choose_Disks.png)
+
+- After submitting the request, wait for a few minutes and you'll have your NAS volume ready to use.
+![image](/images/nas/Volume_Ready.png)
+
+- By default, `Public` folder is created in the volume.
+![image](/images/nas/Default_Folder.png)
+
+## Set permissions from the NAS web interface
+- Enable Advanced Folder Permissions
+![image](/images/nas/Advanced_Permissions.png)
+
+## Mount on the host server
+- Mounting with NFS mode is not safe and thus it is disabled as of now. So, we will mount the NAS volume using CIFS.
+
+```bash
+sudo mount -t cifs //10.0.62.201/foldername directory_path_in_server -o username=username,password=password,uid=uid,gid=gid,file_mode=file_mode,dir_mode=dir_mode
+```
+
+Meanings of the arguments:
+
+| Argument  | Meaning                                            |
+| --------- | -------------------------------------------------- |
+| username  | Username of the NAS account                        |
+| password  | Password of the NAS account                        |
+| uid       | User ID on `HOST` (can be viewed by `id` command)  |
+| gid       | Group ID on `HOST` (can be viewed by `id` command) |
+| file_mode | File permissions                                   |
+| dir_mode  | Directory permissions                              |
+
+### Case 1: Mounting a dataset directory for everyone
+* Create `dataset` shared folder in the NAS volume.
+* Create a dataset directory in the host server.
+```bash
+sudo mkdir /mnt/dataset
+```
+* Mount the dataset directory in the host server.
+```bash
+sudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password
+```
+
+We explicitely chose to not specify `uid,gid,file_mode,dir_mode` so that only root can write inside `/mnt/dataset` in the host server. However, everyone can read from it. So, even the sudo users can not mistakenly delete the data unless they use `sudo` command or login as `root`. Default file_mode is 0644 (read/write for owner, read for group and others) and default dir_mode is 0755 (read/write/execute for owner, read/execute for group and others).
+
+### Case 2: Mounting a personal directory for a specific user
+* Create `personal` shared folder in the NAS volume.
+* Create a personal directory in the host server.
+```bash
+sudo mkdir /mnt/personal
+```
+* Get the uid and gid of the user.
+```bash
+id username
+```
+
+* Mount the personal directory in the host server.
+```bash
+sudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid,file_mode=0600,dir_mode=0700
+```
+
+file_mode=0600 and dir_mode=0700 ensures that only the user can read/write inside `/mnt/personal` in the host server. No one else can read/write inside it.
+
+### Case 3: Mounting a shared directory where one user can write and others can read
+* Create `shared` shared folder in the NAS volume.
+* Create a shared directory in the host server.
+```bash
+sudo mkdir /mnt/shared
+```
+* Get the uid and gid of the user.
+```bash
+id username
+```
+
+* Mount the shared directory in the host server.
+```bash
+sudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid,file_mode=0644,dir_mode=0755
+```
+or
+```bash
+sudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid
+```
+
+file_mode=0644 and dir_mode=0755 ensures that the user can read/write inside `/mnt/shared` in the host server. Others can only read from it. This is also the default behaviour.
+
+## Mount on a Mac
+
+- Open Finder and click on `Go` -> `Connect to Server`.
+- Enter the server address in the following format:
+```
+smb://10.0.62.201
+```
+- Enter the username and password.
+- Click on `Connect`.
+- You will see the shared folders. Click on the desired folder to mount it.
+- You can now access the mounted folder in the Finder.
