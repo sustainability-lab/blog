@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/pep8.html</loc>
-    <lastmod>2024-09-04T03:31:23.169Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/gpu_tips.html</loc>
-    <lastmod>2024-09-04T03:31:23.165Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/file_permissions.html</loc>
-    <lastmod>2024-09-04T03:31:23.165Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
-    <lastmod>2024-09-04T03:31:23.121Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/index.html</loc>
-    <lastmod>2024-09-04T03:31:23.165Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
+    <lastmod>2024-09-04T04:35:13.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/internet_login.html</loc>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/restrict_login.html</loc>
-    <lastmod>2024-09-04T03:31:23.169Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/nas_setup.html</loc>
-    <lastmod>2024-09-04T03:31:23.165Z</lastmod>
+    <lastmod>2024-09-04T04:35:13.413Z</lastmod>
   </url>
 </urlset>

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zeel B Patel">
+<meta name="dcterms.date" content="2024-09-04">
+<meta name="description" content="Internet login in servers. K different ways.">
 
-<title>pep8 – Blog</title>
+<title>Internet Login in IITGN Network from CLI Servers – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -110,10 +147,65 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Internet Login in IITGN Network from CLI Servers</h1>
+                  <div>
+        <div class="description">
+          Internet login in servers. K different ways.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">dev</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Zeel B Patel </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 4, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-internet-login-in-cli-servers" id="toc-what-is-internet-login-in-cli-servers" class="nav-link active" data-scroll-target="#what-is-internet-login-in-cli-servers">What is Internet Login in CLI Servers?</a></li>
+  <li><a href="#os-agnostic-ways" id="toc-os-agnostic-ways" class="nav-link" data-scroll-target="#os-agnostic-ways">OS agnostic ways</a>
+  <ul class="collapse">
+  <li><a href="#using-browsh-cli-browser" id="toc-using-browsh-cli-browser" class="nav-link" data-scroll-target="#using-browsh-cli-browser">Using <code>browsh</code> CLI Browser</a></li>
+  <li><a href="#dynamic-port-forwarding-socks-proxy" id="toc-dynamic-port-forwarding-socks-proxy" class="nav-link" data-scroll-target="#dynamic-port-forwarding-socks-proxy">Dynamic Port Forwarding (SOCKS Proxy)</a></li>
+  </ul></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a>
+  <ul class="collapse">
+  <li><a href="#using-mobaxterm" id="toc-using-mobaxterm" class="nav-link" data-scroll-target="#using-mobaxterm">Using MobaXterm</a></li>
+  </ul></li>
+  <li><a href="#linux-ubuntu" id="toc-linux-ubuntu" class="nav-link" data-scroll-target="#linux-ubuntu">Linux (Ubuntu)</a></li>
+  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">Mac</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -121,7 +213,80 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="what-is-internet-login-in-cli-servers" class="level1">
+<h1>What is Internet Login in CLI Servers?</h1>
+<p>We have multiple servers e.g.&nbsp;Ramanujan which are rack servers and internet often expires in these servers at a regular interval. So, we need to login to the internet when it expires.</p>
+</section>
+<section id="os-agnostic-ways" class="level1">
+<h1>OS agnostic ways</h1>
+<section id="using-browsh-cli-browser" class="level2">
+<h2 class="anchored" data-anchor-id="using-browsh-cli-browser">Using <code>browsh</code> CLI Browser</h2>
+<ul>
+<li>We have <code>browsh</code> installed in the servers.</li>
+<li>Simply type <code>browsh</code> in the terminal and hit enter.</li>
+<li>It should open a CLI browser.</li>
+<li>Press <code>Ctrl + L</code> to go to the URL bar.</li>
+<li>Go to https://internet.iitgn.ac.in/ and login with your credentials.</li>
+</ul>
+</section>
+<section id="dynamic-port-forwarding-socks-proxy" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-port-forwarding-socks-proxy">Dynamic Port Forwarding (SOCKS Proxy)</h2>
+<ul>
+<li>Login from CMD/terminal using <code>ssh</code> command with dynamic port forwarding.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-D</span> 8080 username@server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Now, set the proxy in your browser to <code>localhost:8080</code> and you are good to go.</li>
+<li>Go to https://internet.iitgn.ac.in/ and login with your credentials.</li>
+<li>You can turn off the proxy in your browser after you are done.</li>
+</ul>
+</section>
+</section>
+<section id="windows" class="level1">
+<h1>Windows</h1>
+<section id="using-mobaxterm" class="level2">
+<h2 class="anchored" data-anchor-id="using-mobaxterm">Using MobaXterm</h2>
+<ul>
+<li>Download and install MobaXterm from <a href="https://mobaxterm.mobatek.net/download.html">here</a>.</li>
+<li>Open MobaXterm and setup a new session for the server.</li>
+<li>Once you are able to login via ssh. Simply type <code>firefox</code> in the terminal and hit enter.</li>
+<li>It should automatically open a separate window with the browser.</li>
+<li>Go to https://internet.iitgn.ac.in/ and login with your credentials.</li>
+</ul>
+<blockquote class="blockquote">
+<p>This could be slower than the OS agnostic ways.</p>
+</blockquote>
+</section>
+</section>
+<section id="linux-ubuntu" class="level1">
+<h1>Linux (Ubuntu)</h1>
+<ul>
+<li>Use <code>ssh</code> with additional <code>-X</code> flag.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-X</span> username@server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Now, type <code>firefox</code> in the terminal and hit enter.</li>
+<li>It should automatically open a separate window with the browser.</li>
+<li>Go to https://internet.iitgn.ac.in/ and login with your credentials.</li>
+</ul>
+<blockquote class="blockquote">
+<p>This could be slower than the OS agnostic ways.</p>
+</blockquote>
+</section>
+<section id="mac" class="level1">
+<h1>Mac</h1>
+<ul>
+<li>Install <code>XQuartz</code> from <a href="https://www.xquartz.org/">here</a>.</li>
+<li>In XQuartz terminal, type <code>ssh -X username@server</code>.</li>
+<li>Now, type <code>firefox</code> in the terminal and hit enter.</li>
+<li>It should automatically open a separate window with the browser.</li>
+</ul>
+<blockquote class="blockquote">
+<p>This could be slower than the OS agnostic ways.</p>
+</blockquote>
 
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

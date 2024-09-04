@@ -2,8 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/nas_setup.html",
       "/posts/pep8.html",
+      "/posts/internet_login.html",
+      "/posts/nas_setup.html",
       "/posts/file_permissions.html",
       "/posts/restrict_login.html",
       "/posts/gpu_tips.html"

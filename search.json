@@ -1,47 +1,5 @@
 [
   {
-    "objectID": "posts/pep8.html",
-    "href": "posts/pep8.html",
-    "title": "QNAP NAS Setup",
-    "section": "",
-    "text": "Source: QNAP NAS Setup"
-  },
-  {
-    "objectID": "posts/pep8.html#terminology",
-    "href": "posts/pep8.html#terminology",
-    "title": "QNAP NAS Setup",
-    "section": "Terminology",
-    "text": "Terminology\n\nNAS: Network Attached Storage Device\nHOST: The server where the NAS volume is mounted"
-  },
-  {
-    "objectID": "posts/pep8.html#create-the-volume",
-    "href": "posts/pep8.html#create-the-volume",
-    "title": "QNAP NAS Setup",
-    "section": "Create the Volume",
-    "text": "Create the Volume\n\nOpen NAS web interface in a browser by IP address (currently, 10.0.62.201) and login with an admin access account.\nHomepage may look like this: \nChecking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs. \nAfter clicking Performance test, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs. \nWe need to create a volume to store data. \nChoosing Static Volume to get maximum read/write speed. \nUsing 3 HDDs for now in RAID 5 mode (saves against 1 HDD failure and provides N/2 storage space). \nAfter submitting the request, wait for a few minutes and you’ll have your NAS volume ready to use. \nBy default, Public folder is created in the volume."
-  },
-  {
-    "objectID": "posts/pep8.html#set-permissions-from-the-nas-web-interface",
-    "href": "posts/pep8.html#set-permissions-from-the-nas-web-interface",
-    "title": "QNAP NAS Setup",
-    "section": "Set permissions from the NAS web interface",
-    "text": "Set permissions from the NAS web interface\n\nEnable Advanced Folder Permissions"
-  },
-  {
-    "objectID": "posts/pep8.html#mount-on-the-host-server",
-    "href": "posts/pep8.html#mount-on-the-host-server",
-    "title": "QNAP NAS Setup",
-    "section": "Mount on the host server",
-    "text": "Mount on the host server\n\nMounting with NFS mode is not safe and thus it is disabled as of now. So, we will mount the NAS volume using CIFS.\n\nsudo mount -t cifs //10.0.62.201/foldername directory_path_in_server -o username=username,password=password,uid=uid,gid=gid,file_mode=file_mode,dir_mode=dir_mode\nMeanings of the arguments:\n\n\n\nArgument\nMeaning\n\n\n\n\nusername\nUsername of the NAS account\n\n\npassword\nPassword of the NAS account\n\n\nuid\nUser ID on HOST (can be viewed by id command)\n\n\ngid\nGroup ID on HOST (can be viewed by id command)\n\n\nfile_mode\nFile permissions\n\n\ndir_mode\nDirectory permissions\n\n\n\n\nCase 1: Mounting a dataset directory for everyone\n\nCreate dataset shared folder in the NAS volume.\nCreate a dataset directory in the host server.\n\nsudo mkdir /mnt/dataset\n\nMount the dataset directory in the host server.\n\nsudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password\nWe explicitely chose to not specify uid,gid,file_mode,dir_mode so that only root can write inside /mnt/dataset in the host server. However, everyone can read from it. So, even the sudo users can not mistakenly delete the data unless they use sudo command or login as root. Default file_mode is 0644 (read/write for owner, read for group and others) and default dir_mode is 0755 (read/write/execute for owner, read/execute for group and others).\n\n\nCase 2: Mounting a personal directory for a specific user\n\nCreate personal shared folder in the NAS volume.\nCreate a personal directory in the host server.\n\nsudo mkdir /mnt/personal\n\nGet the uid and gid of the user.\n\nid username\n\nMount the personal directory in the host server.\n\nsudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid,file_mode=0600,dir_mode=0700\nfile_mode=0600 and dir_mode=0700 ensures that only the user can read/write inside /mnt/personal in the host server. No one else can read/write inside it.\n\n\nCase 3: Mounting a shared directory where one user can write and others can read\n\nCreate shared shared folder in the NAS volume.\nCreate a shared directory in the host server.\n\nsudo mkdir /mnt/shared\n\nGet the uid and gid of the user.\n\nid username\n\nMount the shared directory in the host server.\n\nsudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid,file_mode=0644,dir_mode=0755\nor\nsudo mount -t cifs //10.0.62.201/dataset /mnt/dataset -o username=username,password=password,uid=uid,gid=gid\nfile_mode=0644 and dir_mode=0755 ensures that the user can read/write inside /mnt/shared in the host server. Others can only read from it. This is also the default behaviour."
-  },
-  {
-    "objectID": "posts/pep8.html#mount-on-a-mac",
-    "href": "posts/pep8.html#mount-on-a-mac",
-    "title": "QNAP NAS Setup",
-    "section": "Mount on a Mac",
-    "text": "Mount on a Mac\n\nOpen Finder and click on Go -&gt; Connect to Server.\nEnter the server address in the following format:\n\nsmb://10.0.62.201\n\nEnter the username and password.\nClick on Connect.\nYou will see the shared folders. Click on the desired folder to mount it.\nYou can now access the mounted folder in the Finder."
-  },
-  {
     "objectID": "posts/gpu_tips.html",
     "href": "posts/gpu_tips.html",
     "title": "GPU CheatSheet",
@@ -77,6 +35,13 @@
     "text": "3 positions in the permission string:\n\n1st position: Owner\n2nd position: Group\n3rd position: Others\n\nAll useful combinations of permissions:\n\n\n\n\nPermission\nNumber\nSymbol\n\n\n\n\nNo access\n0\n-\n\n\nRead\n4\nr\n\n\nWrite\n2\nw\n\n\nExecute\n1\nx\n\n\nRead + Write\n6\nrw\n\n\nRead + Exec\n5\nrx\n\n\nRead + Write + Exec\n7\nrwx\n\n\n\n\nPermissions such as “Write + Execute” are not useful because if we don’t want a user to read a file, we should not allow them to write to it either.\nMeaning of umask xxxx\nSome useful commands:\n\n\n\n\n\n\n\n\nTo Do\nHow To Do\n\n\n\n\nPrevent everyone else from reading a file\nchmod 600 filename\n\n\nPrevent everyone else from entering a dir\nchmod 600 dirname\n\n\nPrevent everyone else from reading dir content\nchmod 700 dirname\n\n\nPrevent everyone else from reading every new file and dir\numask 0077"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Internet Login in IITGN Network from CLI Servers\n\n\n\n\n\n\ndev\n\n\n\nInternet login in servers. K different ways.\n\n\n\n\n\nSep 4, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nQNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nFile Permissions\n\n\n\n\n\n\nlinux\n\n\n\nManaging file permissions in a shared server\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\nLinux\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\ngpu\n\n\nlinux\n\n\n\nGPU related tips and tricks\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -84,11 +49,32 @@
     "text": "About this blog"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
+    "objectID": "posts/internet_login.html",
+    "href": "posts/internet_login.html",
+    "title": "Internet Login in IITGN Network from CLI Servers",
     "section": "",
-    "text": "QNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nQNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nFile Permissions\n\n\n\n\n\n\nlinux\n\n\n\nManaging file permissions in a shared server\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\nLinux\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\ngpu\n\n\nlinux\n\n\n\nGPU related tips and tricks\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "We have multiple servers e.g. Ramanujan which are rack servers and internet often expires in these servers at a regular interval. So, we need to login to the internet when it expires."
+  },
+  {
+    "objectID": "posts/internet_login.html#using-browsh-cli-browser",
+    "href": "posts/internet_login.html#using-browsh-cli-browser",
+    "title": "Internet Login in IITGN Network from CLI Servers",
+    "section": "Using browsh CLI Browser",
+    "text": "Using browsh CLI Browser\n\nWe have browsh installed in the servers.\nSimply type browsh in the terminal and hit enter.\nIt should open a CLI browser.\nPress Ctrl + L to go to the URL bar.\nGo to https://internet.iitgn.ac.in/ and login with your credentials."
+  },
+  {
+    "objectID": "posts/internet_login.html#dynamic-port-forwarding-socks-proxy",
+    "href": "posts/internet_login.html#dynamic-port-forwarding-socks-proxy",
+    "title": "Internet Login in IITGN Network from CLI Servers",
+    "section": "Dynamic Port Forwarding (SOCKS Proxy)",
+    "text": "Dynamic Port Forwarding (SOCKS Proxy)\n\nLogin from CMD/terminal using ssh command with dynamic port forwarding.\n\nssh -D 8080 username@server\n\nNow, set the proxy in your browser to localhost:8080 and you are good to go.\nGo to https://internet.iitgn.ac.in/ and login with your credentials.\nYou can turn off the proxy in your browser after you are done."
+  },
+  {
+    "objectID": "posts/internet_login.html#using-mobaxterm",
+    "href": "posts/internet_login.html#using-mobaxterm",
+    "title": "Internet Login in IITGN Network from CLI Servers",
+    "section": "Using MobaXterm",
+    "text": "Using MobaXterm\n\nDownload and install MobaXterm from here.\nOpen MobaXterm and setup a new session for the server.\nOnce you are able to login via ssh. Simply type firefox in the terminal and hit enter.\nIt should automatically open a separate window with the browser.\nGo to https://internet.iitgn.ac.in/ and login with your credentials.\n\n\nThis could be slower than the OS agnostic ways."
   },
   {
     "objectID": "posts/restrict_login.html",
