@@ -2,10 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2023-07-25-Setup-NAS.html",
-      "/posts/2023-07-25-Remove-read-access.html",
-      "/posts/2023-07-24-Prevent-login.html",
-      "/posts/2022-04-15-GPU-tips.html"
+      "/posts/nas_setup.html",
+      "/posts/pep8.html",
+      "/posts/file_permissions.html",
+      "/posts/restrict_login.html",
+      "/posts/gpu_tips.html"
     ]
   }
 ]

@@ -2,15 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Zeel B Patel">
-<meta name="dcterms.date" content="2023-07-25">
-<meta name="description" content="Simple solution to prevent multiple users to see each other’s files.">
+<meta name="dcterms.date" content="2022-04-15">
+<meta name="description" content="GPU related tips and tricks">
 
-<title>Remove read access to other users – Blog</title>
+<title>GPU CheatSheet – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -150,14 +115,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Remove read access to other users</h1>
+      <h1 class="title">GPU CheatSheet</h1>
                   <div>
         <div class="description">
-          Simple solution to prevent multiple users to see each other’s files.
+          GPU related tips and tricks
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Linux</div>
+                <div class="quarto-category">gpu</div>
+                <div class="quarto-category">linux</div>
               </div>
                   </div>
   </div>
@@ -165,17 +131,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Zeel B Patel </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 25, 2023</p>
+        <p class="date">April 15, 2022</p>
       </div>
     </div>
     
@@ -191,8 +151,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#remove-read-access-to-other-users-for-existing-users" id="toc-remove-read-access-to-other-users-for-existing-users" class="nav-link active" data-scroll-target="#remove-read-access-to-other-users-for-existing-users">Remove read access to other users for existing users</a></li>
-  <li><a href="#how-to-set-this-by-default-for-all-new-user-accounts" id="toc-how-to-set-this-by-default-for-all-new-user-accounts" class="nav-link" data-scroll-target="#how-to-set-this-by-default-for-all-new-user-accounts">How to set this by default for all new user accounts?</a></li>
+  <li><a href="#xorg-uses-gpu-memory" id="toc-xorg-uses-gpu-memory" class="nav-link active" data-scroll-target="#xorg-uses-gpu-memory">Xorg uses GPU memory</a></li>
+  <li><a href="#nvidia-smi-takes-too-long-to-load" id="toc-nvidia-smi-takes-too-long-to-load" class="nav-link" data-scroll-target="#nvidia-smi-takes-too-long-to-load"><code>nvidia-smi</code> takes too long to load</a></li>
   </ul>
 </nav>
     </div>
@@ -203,33 +163,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="remove-read-access-to-other-users-for-existing-users" class="level2">
-<h2 class="anchored" data-anchor-id="remove-read-access-to-other-users-for-existing-users">Remove read access to other users for existing users</h2>
-<ul>
-<li>To prevent other users from reading a user’s data:</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 700 /home/username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Check if the access is restricted:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /home/username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It will show a message similar to the following:</p>
-<pre><code>ls: cannot open directory '/home/username': Permission denied</code></pre>
-<ul>
-<li>To apply this restriction to all existing users, run the following command:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 700 /home/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote class="blockquote">
-<p>All sudo users can still access the contents of the home directories of their own as well as others.</p>
-</blockquote>
+<section id="xorg-uses-gpu-memory" class="level2">
+<h2 class="anchored" data-anchor-id="xorg-uses-gpu-memory">Xorg uses GPU memory</h2>
+<p><a href="https://askubuntu.com/a/1313440">StackOverFlow answer</a>.</p>
+<p>Solution: comment out everything in <code>/usr/share/X11/xorg.conf.d/10-nvidia.conf</code> and then restart the display manager with:</p>
+<pre><code>sudo systemctl restart display-manager</code></pre>
 </section>
-<section id="how-to-set-this-by-default-for-all-new-user-accounts" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-set-this-by-default-for-all-new-user-accounts">How to set this by default for all new user accounts?</h2>
-<p>A solution is given <a href="https://ubuntu.com/server/docs/security-users">here</a>.</p>
-<p>We can simply change the <code>DIR_MODE</code> in <code>/etc/adduser.conf</code> file to this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">DIR_MODE</span><span class="op">=</span>0700</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># DIR_MODE=0755  # This is default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Where: - 0 means octal numbering system. - 7 means read (4) + write (2) + execute (1) access to the owner. - Last two zeros means no access to other users.</p>
+<section id="nvidia-smi-takes-too-long-to-load" class="level2">
+<h2 class="anchored" data-anchor-id="nvidia-smi-takes-too-long-to-load"><code>nvidia-smi</code> takes too long to load</h2>
+<p>One of the reasons could be that persistence mode is disabled. To enable it, run:</p>
+<pre><code>sudo nvidia-smi -pm 1</code></pre>
 
 
 </section>

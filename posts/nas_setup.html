@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-04-15">
-<meta name="description" content="GPU related tips and tricks">
+<meta name="author" content="Zeel B Patel">
+<meta name="dcterms.date" content="2024-06-10">
+<meta name="description" content="Set up QNAP NAS user permissions">
 
-<title>GPU CheatSheet – Blog</title>
+<title>QNAP NAS Setup – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -115,14 +150,14 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">GPU CheatSheet</h1>
+      <h1 class="title">QNAP NAS Setup</h1>
                   <div>
         <div class="description">
-          GPU related tips and tricks
+          Set up QNAP NAS user permissions
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">GPU</div>
+                <div class="quarto-category">Linux</div>
               </div>
                   </div>
   </div>
@@ -130,11 +165,17 @@ ul.task-list li input[type="checkbox"] {
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Zeel B Patel </p>
+            </div>
+    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 15, 2022</p>
+        <p class="date">June 10, 2024</p>
       </div>
     </div>
     
@@ -150,7 +191,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04" id="toc-prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04" class="nav-link active" data-scroll-target="#prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04">Prevent Xorg from using GPU memory on Ubuntu 20.04</a></li>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link active" data-scroll-target="#terminology">Terminology</a></li>
+  <li><a href="#create-the-volume" id="toc-create-the-volume" class="nav-link" data-scroll-target="#create-the-volume">Create the Volume</a></li>
+  <li><a href="#set-permissions-from-the-nas-web-interface" id="toc-set-permissions-from-the-nas-web-interface" class="nav-link" data-scroll-target="#set-permissions-from-the-nas-web-interface">Set permissions from the NAS web interface</a></li>
+  <li><a href="#mount-on-the-host-server" id="toc-mount-on-the-host-server" class="nav-link" data-scroll-target="#mount-on-the-host-server">Mount on the host server</a>
+  <ul class="collapse">
+  <li><a href="#case-1-mounting-a-dataset-directory-for-everyone" id="toc-case-1-mounting-a-dataset-directory-for-everyone" class="nav-link" data-scroll-target="#case-1-mounting-a-dataset-directory-for-everyone">Case 1: Mounting a dataset directory for everyone</a></li>
+  <li><a href="#case-2-mounting-a-personal-directory-for-a-specific-user" id="toc-case-2-mounting-a-personal-directory-for-a-specific-user" class="nav-link" data-scroll-target="#case-2-mounting-a-personal-directory-for-a-specific-user">Case 2: Mounting a personal directory for a specific user</a></li>
+  <li><a href="#case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read" id="toc-case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read" class="nav-link" data-scroll-target="#case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read">Case 3: Mounting a shared directory where one user can write and others can read</a></li>
+  </ul></li>
+  <li><a href="#mount-on-a-mac" id="toc-mount-on-a-mac" class="nav-link" data-scroll-target="#mount-on-a-mac">Mount on a Mac</a></li>
   </ul>
 </nav>
     </div>
@@ -161,11 +211,140 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04" class="level2">
-<h2 class="anchored" data-anchor-id="prevent-xorg-from-using-gpu-memory-on-ubuntu-20.04">Prevent Xorg from using GPU memory on Ubuntu 20.04</h2>
-<p><a href="https://askubuntu.com/a/1313440">StackOverFlow answer</a>.</p>
-<p>Solution: comment out everything in <code>/usr/share/X11/xorg.conf.d/10-nvidia.conf</code> and then restart the display manager with:</p>
-<pre><code>sudo systemctl restart display-manager</code></pre>
+<ul>
+<li>Source: <a href="https://www.qnap.com/en/how-to/faq/article/how-to-configure-sub-folders-acl-for-nfs-clients">QNAP NAS Setup</a></li>
+</ul>
+<section id="terminology" class="level2">
+<h2 class="anchored" data-anchor-id="terminology">Terminology</h2>
+<ul>
+<li><code>NAS</code>: Network Attached Storage Device</li>
+<li><code>HOST</code>: The server where the NAS volume is mounted</li>
+</ul>
+</section>
+<section id="create-the-volume" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-volume">Create the Volume</h2>
+<ul>
+<li><p>Open NAS web interface in a browser by IP address (currently, <code>10.0.62.201</code>) and login with an admin access account.</p></li>
+<li><p>Homepage may look like this: <img src="../images/nas/Homepage.png" class="img-fluid" alt="image"></p></li>
+<li><p>Checking the storage space and number of HDDs installed. It shows total 12 slots and 6 slots filled with HDDs. <img src="../images/nas/Disks.png" class="img-fluid" alt="image"></p></li>
+<li><p>After clicking <code>Performance test</code>, it shows the following panel. After running tests on a few HDDs, it seems that the read speed is approx 250 MBPs. <img src="../images/nas/Disk_Performance.png" class="img-fluid" alt="image"></p></li>
+<li><p>We need to create a volume to store data. <img src="../images/nas/Storage_Homepage.png" class="img-fluid" alt="image"></p></li>
+<li><p>Choosing <code>Static Volume</code> to get maximum read/write speed. <img src="../images/nas/Volume_Creation.png" class="img-fluid" alt="image"></p></li>
+<li><p>Using 3 HDDs for now in RAID 5 mode (saves against 1 HDD failure and provides N/2 storage space). <img src="../images/nas/Choose_Disks.png" class="img-fluid" alt="image"></p></li>
+<li><p>After submitting the request, wait for a few minutes and you’ll have your NAS volume ready to use. <img src="../images/nas/Volume_Ready.png" class="img-fluid" alt="image"></p></li>
+<li><p>By default, <code>Public</code> folder is created in the volume. <img src="../images/nas/Default_Folder.png" class="img-fluid" alt="image"></p></li>
+</ul>
+</section>
+<section id="set-permissions-from-the-nas-web-interface" class="level2">
+<h2 class="anchored" data-anchor-id="set-permissions-from-the-nas-web-interface">Set permissions from the NAS web interface</h2>
+<ul>
+<li>Enable Advanced Folder Permissions <img src="../images/nas/Advanced_Permissions.png" class="img-fluid" alt="image"></li>
+</ul>
+</section>
+<section id="mount-on-the-host-server" class="level2">
+<h2 class="anchored" data-anchor-id="mount-on-the-host-server">Mount on the host server</h2>
+<ul>
+<li>Mounting with NFS mode is not safe and thus it is disabled as of now. So, we will mount the NAS volume using CIFS.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/foldername directory_path_in_server <span class="at">-o</span> username=username,password=password,uid=uid,gid=gid,file_mode=file_mode,dir_mode=dir_mode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Meanings of the arguments:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>username</td>
+<td>Username of the NAS account</td>
+</tr>
+<tr class="even">
+<td>password</td>
+<td>Password of the NAS account</td>
+</tr>
+<tr class="odd">
+<td>uid</td>
+<td>User ID on <code>HOST</code> (can be viewed by <code>id</code> command)</td>
+</tr>
+<tr class="even">
+<td>gid</td>
+<td>Group ID on <code>HOST</code> (can be viewed by <code>id</code> command)</td>
+</tr>
+<tr class="odd">
+<td>file_mode</td>
+<td>File permissions</td>
+</tr>
+<tr class="even">
+<td>dir_mode</td>
+<td>Directory permissions</td>
+</tr>
+</tbody>
+</table>
+<section id="case-1-mounting-a-dataset-directory-for-everyone" class="level3">
+<h3 class="anchored" data-anchor-id="case-1-mounting-a-dataset-directory-for-everyone">Case 1: Mounting a dataset directory for everyone</h3>
+<ul>
+<li>Create <code>dataset</code> shared folder in the NAS volume.</li>
+<li>Create a dataset directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Mount the dataset directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/dataset /mnt/dataset <span class="at">-o</span> username=username,password=password</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We explicitely chose to not specify <code>uid,gid,file_mode,dir_mode</code> so that only root can write inside <code>/mnt/dataset</code> in the host server. However, everyone can read from it. So, even the sudo users can not mistakenly delete the data unless they use <code>sudo</code> command or login as <code>root</code>. Default file_mode is 0644 (read/write for owner, read for group and others) and default dir_mode is 0755 (read/write/execute for owner, read/execute for group and others).</p>
+</section>
+<section id="case-2-mounting-a-personal-directory-for-a-specific-user" class="level3">
+<h3 class="anchored" data-anchor-id="case-2-mounting-a-personal-directory-for-a-specific-user">Case 2: Mounting a personal directory for a specific user</h3>
+<ul>
+<li>Create <code>personal</code> shared folder in the NAS volume.</li>
+<li>Create a personal directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/personal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Get the uid and gid of the user.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">id</span> username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Mount the personal directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/dataset /mnt/dataset <span class="at">-o</span> username=username,password=password,uid=uid,gid=gid,file_mode=0600,dir_mode=0700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>file_mode=0600 and dir_mode=0700 ensures that only the user can read/write inside <code>/mnt/personal</code> in the host server. No one else can read/write inside it.</p>
+</section>
+<section id="case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read" class="level3">
+<h3 class="anchored" data-anchor-id="case-3-mounting-a-shared-directory-where-one-user-can-write-and-others-can-read">Case 3: Mounting a shared directory where one user can write and others can read</h3>
+<ul>
+<li>Create <code>shared</code> shared folder in the NAS volume.</li>
+<li>Create a shared directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/shared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Get the uid and gid of the user.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">id</span> username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Mount the shared directory in the host server.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/dataset /mnt/dataset <span class="at">-o</span> username=username,password=password,uid=uid,gid=gid,file_mode=0644,dir_mode=0755</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> cifs //10.0.62.201/dataset /mnt/dataset <span class="at">-o</span> username=username,password=password,uid=uid,gid=gid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>file_mode=0644 and dir_mode=0755 ensures that the user can read/write inside <code>/mnt/shared</code> in the host server. Others can only read from it. This is also the default behaviour.</p>
+</section>
+</section>
+<section id="mount-on-a-mac" class="level2">
+<h2 class="anchored" data-anchor-id="mount-on-a-mac">Mount on a Mac</h2>
+<ul>
+<li>Open Finder and click on <code>Go</code> -&gt; <code>Connect to Server</code>.</li>
+<li>Enter the server address in the following format:</li>
+</ul>
+<pre><code>smb://10.0.62.201</code></pre>
+<ul>
+<li>Enter the username and password.</li>
+<li>Click on <code>Connect</code>.</li>
+<li>You will see the shared folders. Click on the desired folder to mount it.</li>
+<li>You can now access the mounted folder in the Finder.</li>
+</ul>
 
 
 </section>
