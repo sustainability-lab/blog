@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/pep8.html",
+      "/posts/read_write.html",
       "/posts/internet_login.html",
       "/posts/nas_setup.html",
       "/posts/file_permissions.html",
