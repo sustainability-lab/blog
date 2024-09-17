@@ -28,104 +28,6 @@
     "text": "Using MobaXterm\n\nDownload and install MobaXterm from here.\nOpen MobaXterm and setup a new session for the server.\nOnce you are able to login via ssh. Simply type firefox in the terminal and hit enter.\nIt should automatically open a separate window with the browser.\nGo to https://internet.iitgn.ac.in/ and login with your credentials.\n\n\nThis could be slower than the OS agnostic ways."
   },
   {
-    "objectID": "posts/file_permissions.html",
-    "href": "posts/file_permissions.html",
-    "title": "File Permissions",
-    "section": "",
-    "text": "3 positions in the permission string:\n\n1st position: Owner\n2nd position: Group\n3rd position: Others\n\nAll useful combinations of permissions:\n\n\n\n\nPermission\nNumber\nSymbol\n\n\n\n\nNo access\n0\n-\n\n\nRead\n4\nr\n\n\nWrite\n2\nw\n\n\nExecute\n1\nx\n\n\nRead + Write\n6\nrw\n\n\nRead + Exec\n5\nrx\n\n\nRead + Write + Exec\n7\nrwx\n\n\n\n\nPermissions such as “Write + Execute” are not useful because if we don’t want a user to read a file, we should not allow them to write to it either.\nMeaning of umask xxxx\nSome useful commands:\n\n\n\n\n\n\n\n\nTo Do\nHow To Do\n\n\n\n\nPrevent everyone else from reading a file\nchmod 600 filename\n\n\nPrevent everyone else from entering a dir\nchmod 600 dirname\n\n\nPrevent everyone else from reading dir content\nchmod 700 dirname\n\n\nPrevent everyone else from reading every new file and dir\numask 0077"
-  },
-  {
-    "objectID": "posts/file_permissions.html#cheatsheet",
-    "href": "posts/file_permissions.html#cheatsheet",
-    "title": "File Permissions",
-    "section": "",
-    "text": "3 positions in the permission string:\n\n1st position: Owner\n2nd position: Group\n3rd position: Others\n\nAll useful combinations of permissions:\n\n\n\n\nPermission\nNumber\nSymbol\n\n\n\n\nNo access\n0\n-\n\n\nRead\n4\nr\n\n\nWrite\n2\nw\n\n\nExecute\n1\nx\n\n\nRead + Write\n6\nrw\n\n\nRead + Exec\n5\nrx\n\n\nRead + Write + Exec\n7\nrwx\n\n\n\n\nPermissions such as “Write + Execute” are not useful because if we don’t want a user to read a file, we should not allow them to write to it either.\nMeaning of umask xxxx\nSome useful commands:\n\n\n\n\n\n\n\n\nTo Do\nHow To Do\n\n\n\n\nPrevent everyone else from reading a file\nchmod 600 filename\n\n\nPrevent everyone else from entering a dir\nchmod 600 dirname\n\n\nPrevent everyone else from reading dir content\nchmod 700 dirname\n\n\nPrevent everyone else from reading every new file and dir\numask 0077"
-  },
-  {
-    "objectID": "posts/read_write.html",
-    "href": "posts/read_write.html",
-    "title": "Read Write Benchmarking",
-    "section": "",
-    "text": "Device info: Try: sudo smartctl -d megaraid,0 -a /dev/sdX where sdX is the device name. (worked in Ramanujan) Else Try: sudo smartctl -i /dev/sdX where sdX is the device name. (worked in Sustain) For NAS: Checked in GUI\nDevice partitions: Try: lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL to list all partitions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nServer\nDevice Model\nType\nRotation rate (rpm)\nSATA version\nSpeed\nCapacity\n\n\n\n\nRamanujan\nINTEL SSDSC2KB076T8\nSSD\n-\nSATA 3.2\n6 Gb/s\n7.68 TB\n\n\nSustain (Samsung)\nSamsung SSD 860 EVO 250GB\nSSD\n-\nSATA 3.2\n6 Gb/s\n250 GB\n\n\nSustain (Seagate)\nSeagate ST1000NM0008-2F2100\nHDD\n7200\nSATA 3.1\n6 Gb/s\n1 TB\n\n\nNAS\nSeagate ST18000NM000J-2TV103\nHDD\n7200\nSATA but not checked version\n6 Gb/s\n16.37 TB"
-  },
-  {
-    "objectID": "posts/read_write.html#commands",
-    "href": "posts/read_write.html#commands",
-    "title": "Read Write Benchmarking",
-    "section": "",
-    "text": "Device info: Try: sudo smartctl -d megaraid,0 -a /dev/sdX where sdX is the device name. (worked in Ramanujan) Else Try: sudo smartctl -i /dev/sdX where sdX is the device name. (worked in Sustain) For NAS: Checked in GUI\nDevice partitions: Try: lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL to list all partitions."
-  },
-  {
-    "objectID": "posts/read_write.html#filesystems",
-    "href": "posts/read_write.html#filesystems",
-    "title": "Read Write Benchmarking",
-    "section": "",
-    "text": "Server\nDevice Model\nType\nRotation rate (rpm)\nSATA version\nSpeed\nCapacity\n\n\n\n\nRamanujan\nINTEL SSDSC2KB076T8\nSSD\n-\nSATA 3.2\n6 Gb/s\n7.68 TB\n\n\nSustain (Samsung)\nSamsung SSD 860 EVO 250GB\nSSD\n-\nSATA 3.2\n6 Gb/s\n250 GB\n\n\nSustain (Seagate)\nSeagate ST1000NM0008-2F2100\nHDD\n7200\nSATA 3.1\n6 Gb/s\n1 TB\n\n\nNAS\nSeagate ST18000NM000J-2TV103\nHDD\n7200\nSATA but not checked version\n6 Gb/s\n16.37 TB"
-  },
-  {
-    "objectID": "posts/read_write.html#unzip",
-    "href": "posts/read_write.html#unzip",
-    "title": "Read Write Benchmarking",
-    "section": "Unzip",
-    "text": "Unzip\nTime taken to unzip 1000 images.\n\n\n\n\n\n\n\n\nServer\nTime (s)\nComment\n\n\n\n\nRamanujan\n12.9\n\n\n\nSustain (Samsung)\n12.0\n\n\n\nSustain (Seagate)\n12.4\n\n\n\nNAS (direct ssh)\n12.8\n\n\n\nNAS (mounted on Ramanujan)\n54.1\nTested with sudo su as well to make sure sudo isn’t causing the problem"
-  },
-  {
-    "objectID": "posts/read_write.html#transfer-the-2.1-gb-zip-file-from-server-to-nas",
-    "href": "posts/read_write.html#transfer-the-2.1-gb-zip-file-from-server-to-nas",
-    "title": "Read Write Benchmarking",
-    "section": "Transfer the 2.1 GB zip file from Server to NAS",
-    "text": "Transfer the 2.1 GB zip file from Server to NAS\n19.8 seconds (~ 108 MB/s)"
-  },
-  {
-    "objectID": "posts/gpu_tips.html",
-    "href": "posts/gpu_tips.html",
-    "title": "GPU CheatSheet",
-    "section": "",
-    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
-  },
-  {
-    "objectID": "posts/gpu_tips.html#xorg-uses-gpu-memory",
-    "href": "posts/gpu_tips.html#xorg-uses-gpu-memory",
-    "title": "GPU CheatSheet",
-    "section": "",
-    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
-  },
-  {
-    "objectID": "posts/gpu_tips.html#nvidia-smi-takes-too-long-to-load",
-    "href": "posts/gpu_tips.html#nvidia-smi-takes-too-long-to-load",
-    "title": "GPU CheatSheet",
-    "section": "nvidia-smi takes too long to load",
-    "text": "nvidia-smi takes too long to load\nOne of the reasons could be that persistence mode is disabled. To enable it, run:\nsudo nvidia-smi -pm 1"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Read Write Benchmarking\n\n\n\n\n\n\nlinux\n\n\n\nRead Write Benchmarking for different filesystems\n\n\n\n\n\nSep 11, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nInternet Login in IITGN Network from CLI Servers\n\n\n\n\n\n\ndev\n\n\n\nInternet login in servers. K different ways.\n\n\n\n\n\nSep 4, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nQNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nFile Permissions\n\n\n\n\n\n\nlinux\n\n\n\nManaging file permissions in a shared server\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\nLinux\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\ngpu\n\n\nlinux\n\n\n\nGPU related tips and tricks\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this blog"
-  },
-  {
-    "objectID": "posts/restrict_login.html",
-    "href": "posts/restrict_login.html",
-    "title": "Restrict/unrestrict user login",
-    "section": "",
-    "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
-  },
-  {
-    "objectID": "posts/restrict_login.html#restrictunrestrict-user-login-in-linux-system",
-    "href": "posts/restrict_login.html#restrictunrestrict-user-login-in-linux-system",
-    "title": "Restrict/unrestrict user login",
-    "section": "",
-    "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
-  },
-  {
     "objectID": "posts/nas_setup.html",
     "href": "posts/nas_setup.html",
     "title": "QNAP NAS Setup",
@@ -166,5 +68,117 @@
     "title": "QNAP NAS Setup",
     "section": "Mount on a Mac",
     "text": "Mount on a Mac\n\nOpen Finder and click on Go -&gt; Connect to Server.\nEnter the server address in the following format:\n\nsmb://10.0.62.201\n\nEnter the username and password.\nClick on Connect.\nYou will see the shared folders. Click on the desired folder to mount it.\nYou can now access the mounted folder in the Finder."
+  },
+  {
+    "objectID": "posts/restrict_login.html",
+    "href": "posts/restrict_login.html",
+    "title": "Restrict/unrestrict user login",
+    "section": "",
+    "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
+  },
+  {
+    "objectID": "posts/restrict_login.html#restrictunrestrict-user-login-in-linux-system",
+    "href": "posts/restrict_login.html#restrictunrestrict-user-login-in-linux-system",
+    "title": "Restrict/unrestrict user login",
+    "section": "",
+    "text": "To restrict user login:\n\nsudo usermod -s /usr/sbin/nologin username\n\nCheck if the user has been restricted:\n\nsudo su - username\nIt will show a message similar to the following:\nThis account is currently not available.\n\nTo unrestrict user login:\n\nsudo usermod -s /bin/bash username"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Microsoft Labeling Tool\n\n\n\n\n\n\nComputer Vision\n\n\nBrick Kiln Project\n\n\n\nUsing Microsoft Labeling Tool for labeling images.\n\n\n\n\n\nSep 17, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRead Write Benchmarking\n\n\n\n\n\n\nlinux\n\n\n\nRead Write Benchmarking for different filesystems\n\n\n\n\n\nSep 11, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nInternet Login in IITGN Network from CLI Servers\n\n\n\n\n\n\ndev\n\n\n\nInternet login in servers. K different ways.\n\n\n\n\n\nSep 4, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nQNAP NAS Setup\n\n\n\n\n\n\nLinux\n\n\n\nSet up QNAP NAS user permissions\n\n\n\n\n\nJun 10, 2024\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nFile Permissions\n\n\n\n\n\n\nlinux\n\n\n\nManaging file permissions in a shared server\n\n\n\n\n\nJul 25, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nRestrict/unrestrict user login\n\n\n\n\n\n\nLinux\n\n\n\nA way to restrict/unrestrict user login in linux system\n\n\n\n\n\nJul 24, 2023\n\n\nZeel B Patel\n\n\n\n\n\n\n\n\n\n\n\n\nGPU CheatSheet\n\n\n\n\n\n\ngpu\n\n\nlinux\n\n\n\nGPU related tips and tricks\n\n\n\n\n\nApr 15, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/gpu_tips.html",
+    "href": "posts/gpu_tips.html",
+    "title": "GPU CheatSheet",
+    "section": "",
+    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
+  },
+  {
+    "objectID": "posts/gpu_tips.html#xorg-uses-gpu-memory",
+    "href": "posts/gpu_tips.html#xorg-uses-gpu-memory",
+    "title": "GPU CheatSheet",
+    "section": "",
+    "text": "StackOverFlow answer.\nSolution: comment out everything in /usr/share/X11/xorg.conf.d/10-nvidia.conf and then restart the display manager with:\nsudo systemctl restart display-manager"
+  },
+  {
+    "objectID": "posts/gpu_tips.html#nvidia-smi-takes-too-long-to-load",
+    "href": "posts/gpu_tips.html#nvidia-smi-takes-too-long-to-load",
+    "title": "GPU CheatSheet",
+    "section": "nvidia-smi takes too long to load",
+    "text": "nvidia-smi takes too long to load\nOne of the reasons could be that persistence mode is disabled. To enable it, run:\nsudo nvidia-smi -pm 1"
+  },
+  {
+    "objectID": "posts/read_write.html",
+    "href": "posts/read_write.html",
+    "title": "Read Write Benchmarking",
+    "section": "",
+    "text": "Device info: Try: sudo smartctl -d megaraid,0 -a /dev/sdX where sdX is the device name. (worked in Ramanujan) Else Try: sudo smartctl -i /dev/sdX where sdX is the device name. (worked in Sustain) For NAS: Checked in GUI\nDevice partitions: Try: lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL to list all partitions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nServer\nDevice Model\nType\nRotation rate (rpm)\nSATA version\nSpeed\nCapacity\n\n\n\n\nRamanujan\nINTEL SSDSC2KB076T8\nSSD\n-\nSATA 3.2\n6 Gb/s\n7.68 TB\n\n\nSustain (Samsung)\nSamsung SSD 860 EVO 250GB\nSSD\n-\nSATA 3.2\n6 Gb/s\n250 GB\n\n\nSustain (Seagate)\nSeagate ST1000NM0008-2F2100\nHDD\n7200\nSATA 3.1\n6 Gb/s\n1 TB\n\n\nNAS\nSeagate ST18000NM000J-2TV103\nHDD\n7200\nSATA but not checked version\n6 Gb/s\n16.37 TB"
+  },
+  {
+    "objectID": "posts/read_write.html#commands",
+    "href": "posts/read_write.html#commands",
+    "title": "Read Write Benchmarking",
+    "section": "",
+    "text": "Device info: Try: sudo smartctl -d megaraid,0 -a /dev/sdX where sdX is the device name. (worked in Ramanujan) Else Try: sudo smartctl -i /dev/sdX where sdX is the device name. (worked in Sustain) For NAS: Checked in GUI\nDevice partitions: Try: lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL to list all partitions."
+  },
+  {
+    "objectID": "posts/read_write.html#filesystems",
+    "href": "posts/read_write.html#filesystems",
+    "title": "Read Write Benchmarking",
+    "section": "",
+    "text": "Server\nDevice Model\nType\nRotation rate (rpm)\nSATA version\nSpeed\nCapacity\n\n\n\n\nRamanujan\nINTEL SSDSC2KB076T8\nSSD\n-\nSATA 3.2\n6 Gb/s\n7.68 TB\n\n\nSustain (Samsung)\nSamsung SSD 860 EVO 250GB\nSSD\n-\nSATA 3.2\n6 Gb/s\n250 GB\n\n\nSustain (Seagate)\nSeagate ST1000NM0008-2F2100\nHDD\n7200\nSATA 3.1\n6 Gb/s\n1 TB\n\n\nNAS\nSeagate ST18000NM000J-2TV103\nHDD\n7200\nSATA but not checked version\n6 Gb/s\n16.37 TB"
+  },
+  {
+    "objectID": "posts/read_write.html#unzip",
+    "href": "posts/read_write.html#unzip",
+    "title": "Read Write Benchmarking",
+    "section": "Unzip",
+    "text": "Unzip\nTime taken to unzip 1000 images.\n\n\n\n\n\n\n\n\nServer\nTime (s)\nComment\n\n\n\n\nRamanujan\n12.9\n\n\n\nSustain (Samsung)\n12.0\n\n\n\nSustain (Seagate)\n12.4\n\n\n\nNAS (direct ssh)\n12.8\n\n\n\nNAS (mounted on Ramanujan)\n54.1\nTested with sudo su as well to make sure sudo isn’t causing the problem"
+  },
+  {
+    "objectID": "posts/read_write.html#transfer-the-2.1-gb-zip-file-from-server-to-nas",
+    "href": "posts/read_write.html#transfer-the-2.1-gb-zip-file-from-server-to-nas",
+    "title": "Read Write Benchmarking",
+    "section": "Transfer the 2.1 GB zip file from Server to NAS",
+    "text": "Transfer the 2.1 GB zip file from Server to NAS\n19.8 seconds (~ 108 MB/s)"
+  },
+  {
+    "objectID": "posts/file_permissions.html",
+    "href": "posts/file_permissions.html",
+    "title": "File Permissions",
+    "section": "",
+    "text": "3 positions in the permission string:\n\n1st position: Owner\n2nd position: Group\n3rd position: Others\n\nAll useful combinations of permissions:\n\n\n\n\nPermission\nNumber\nSymbol\n\n\n\n\nNo access\n0\n-\n\n\nRead\n4\nr\n\n\nWrite\n2\nw\n\n\nExecute\n1\nx\n\n\nRead + Write\n6\nrw\n\n\nRead + Exec\n5\nrx\n\n\nRead + Write + Exec\n7\nrwx\n\n\n\n\nPermissions such as “Write + Execute” are not useful because if we don’t want a user to read a file, we should not allow them to write to it either.\nMeaning of umask xxxx\nSome useful commands:\n\n\n\n\n\n\n\n\nTo Do\nHow To Do\n\n\n\n\nPrevent everyone else from reading a file\nchmod 600 filename\n\n\nPrevent everyone else from entering a dir\nchmod 600 dirname\n\n\nPrevent everyone else from reading dir content\nchmod 700 dirname\n\n\nPrevent everyone else from reading every new file and dir\numask 0077"
+  },
+  {
+    "objectID": "posts/file_permissions.html#cheatsheet",
+    "href": "posts/file_permissions.html#cheatsheet",
+    "title": "File Permissions",
+    "section": "",
+    "text": "3 positions in the permission string:\n\n1st position: Owner\n2nd position: Group\n3rd position: Others\n\nAll useful combinations of permissions:\n\n\n\n\nPermission\nNumber\nSymbol\n\n\n\n\nNo access\n0\n-\n\n\nRead\n4\nr\n\n\nWrite\n2\nw\n\n\nExecute\n1\nx\n\n\nRead + Write\n6\nrw\n\n\nRead + Exec\n5\nrx\n\n\nRead + Write + Exec\n7\nrwx\n\n\n\n\nPermissions such as “Write + Execute” are not useful because if we don’t want a user to read a file, we should not allow them to write to it either.\nMeaning of umask xxxx\nSome useful commands:\n\n\n\n\n\n\n\n\nTo Do\nHow To Do\n\n\n\n\nPrevent everyone else from reading a file\nchmod 600 filename\n\n\nPrevent everyone else from entering a dir\nchmod 600 dirname\n\n\nPrevent everyone else from reading dir content\nchmod 700 dirname\n\n\nPrevent everyone else from reading every new file and dir\numask 0077"
+  },
+  {
+    "objectID": "posts/microsoft_labeling_tool.html",
+    "href": "posts/microsoft_labeling_tool.html",
+    "title": "Microsoft Labeling Tool",
+    "section": "",
+    "text": "URL of the tool: https://microsoft.github.io/satellite-imagery-labeling-tool/src/labeler.html"
+  },
+  {
+    "objectID": "posts/microsoft_labeling_tool.html#breaking-down-the-meaning",
+    "href": "posts/microsoft_labeling_tool.html#breaking-down-the-meaning",
+    "title": "Microsoft Labeling Tool",
+    "section": "Breaking down the meaning",
+    "text": "Breaking down the meaning\nThe following part is the template\n{\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"type\": \"Feature\",\n            \"properties\": {\n                \"source\": &lt;source&gt;,\n                \"class\": &lt;class_name&gt;,\n                \"secondary_class\": &lt;secondary_class&gt;,\n                \"task_name\": &lt;task_name&gt;\n            },\n            \"geometry\": {\n                \"type\": \"Polygon\",\n                \"coordinates\": &lt;coordinates&gt;,\n            }\n        }\n    ]\n}\nNow understanding the meaning of each field:\n\n\n\n\n\n\n\nField\nDescription\n\n\n\n\nsource\nThe source of the image on which the label is drawn. If it is drawn on the Azure Maps Satellite, then it will be Drawn|Azure Maps Satellite.\n\n\nclass\nThe class name of the label. For example, Zigzag, FCBK, etc.\n\n\nsecondary_class\nThe secondary class of the label. It is optional.\n\n\ntask_name\nThe name of the task. For example, Kilns_1.\n\n\ncoordinates\nThe coordinates of the polygon drawn. It is an array of coordinates. Each coordinate is an array of two elements, longitude, and latitude. The last coordinate should be the same as the first coordinate to close the polygon."
   }
 ]

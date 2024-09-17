@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/internet_login.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/file_permissions.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/read_write.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/gpu_tips.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/index.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
-    <lastmod>2024-09-12T08:36:59.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/pep8.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sustainability-lab.github.io/blog/posts/restrict_login.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
   </url>
   <url>
     <loc>https://sustainability-lab.github.io/blog/posts/nas_setup.html</loc>
-    <lastmod>2024-09-12T08:37:00.038Z</lastmod>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/restrict_login.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/pep8.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/about.html</loc>
+    <lastmod>2024-09-17T10:39:10.594Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/index.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/gpu_tips.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/read_write.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/file_permissions.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sustainability-lab.github.io/blog/posts/microsoft_labeling_tool.html</loc>
+    <lastmod>2024-09-17T10:39:10.654Z</lastmod>
   </url>
 </urlset>
